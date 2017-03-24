@@ -23,6 +23,8 @@ namespace DataBinding
         public DataBindingWindow()
         {
             InitializeComponent();
+
+            ComboBoxLettertype.SelectedItem = new FontFamily("Comic sans MS");
         }
     }
 }

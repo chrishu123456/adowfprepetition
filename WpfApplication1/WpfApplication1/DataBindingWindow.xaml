@@ -15,8 +15,15 @@
         <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="10">
             <TextBox Name="grootteTextBox" Style="{StaticResource baseControlStijl}" Width="30" HorizontalAlignment="Left" Text="{Binding ElementName=grootteSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}"></TextBox>
             <Slider Name="grootteSlider" Style="{StaticResource baseControlStijl}" Width="200" Minimum="6" Maximum="96" IsSnapToTickEnabled="True" SmallChange="1" Value="12"></Slider>
-            <ComboBox Name="lettertypeComboBox" Width="180" Style="{StaticResource baseControlStijl}" ItemsSource="{Binding Source={x:Static Member=Fonts.SystemFontFamilies}}"></ComboBox>
+            <ComboBox Name="ComboBoxLettertype" Width="180" Style="{StaticResource baseControlStijl}" DataContext="{x:Static Member=Fonts.SystemFontFamilies}" ItemsSource="{Binding}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock FontFamily="{Binding}" Text="{Binding}"></TextBlock>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            
         </StackPanel>
-        <TextBlock Margin="10" Text="Tekst" FontSize="{Binding ElementName=grootteSlider, Path=Value}"></TextBlock>
+        <TextBlock Name="TextBlockTekst" Margin="10" Text="Tekst" FontSize="{Binding ElementName=grootteSlider, Path=Value}" FontFamily="{Binding ElementName=ComboBoxLettertype, Path=SelectedValue}"></TextBlock>
     </StackPanel>
 </Window>
